@@ -104,7 +104,7 @@ window.addEventListener('load', function () {
                 const dx2 = (enemy2.x+enemy2.width/2) -(this.x + this.width/2);
                 const dy2 = (enemy2.y + enemy2.height/2) - (this.y + this.height/2);
                 const distance2 =  Math.sqrt(dx2 * dx2 + dy2 * dy2);
-                if(distance2+140 < enemy2.width/2 + this.width/2){
+                if(distance2+100 < enemy2.width/2 + this.width/2){
                     if (enemy2.frameY === 0 ) {
                         gameOver = true;
                         stopSound(audio);
