@@ -1,0 +1,21 @@
+body{
+    background: black;
+}
+#canvas1{
+    background: #0056b3;
+    position:absolute ;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid white;
+
+
+
+    /*aa*/
+
+    /*max-width: 100%;*/
+    /*max-height: 100%;*/
+}
+#playerImage,#backgroundImage, #enemyImage,#enemyImage2,#enemyImage3,#playerImage2,#item,#gold,#enemyImage3,#playerImage2,#playerImage2-1,#playerImage1 {
+    display: none;
+}
