@@ -14,7 +14,17 @@ window.addEventListener('load', function () {
     let gold =[];
     let uti =  true;
     let chuongluc =true;
+    let diemcao = parseInt(localStorage.getItem("diemcao")) || 0;
     let audio = new Audio('Sergio%2527s%20Magic%20Dustbin.mp3');
+// lu tru diem
+    if (localStorage.getItem('gameScore')) {
+        score = parseInt(localStorage.getItem('gameScore'));
+    }
+
+    // Function to save score to localStorage
+    function saveScore() {
+        localStorage.setItem('gameScore', score);
+    }
 
     // su kien tu ban phim
     class InputHandler {
@@ -140,8 +150,8 @@ window.addEventListener('load', function () {
                     if (goldd.frameY === 0 )
                         score  += 5;
                     else score += 10;
+                    goldd.markedForDeletion = true;
                 }
-                goldd.markedForDeletion = true;
             })
             // sprite animation
             //play1
@@ -670,7 +680,7 @@ this.projectiles = [];
         }
 
         draw(context) {
-            super.draw(context, 0, -100, this.width, this.height + 30);
+            super.draw(context, 0, -100, this.width-30, this.height);
         }
     }
 
@@ -680,7 +690,7 @@ this.projectiles = [];
             ramdomEnemyInterval = Math.random() * 100 + 500;
             enemyTimer = 0;
         } else {
-            enemyTimer += 7;
+            enemyTimer += 13;
         }
         enemies.forEach(enemy => {
             enemy.draw(ctx);
@@ -745,7 +755,9 @@ this.projectiles = [];
             goldd.update(daltaTime);
         });
         gold = gold.filter(goldd => !goldd.markedForDeletion); // xu ly tao 1 ham moi va them doi tuong neu markedForDeletion true
+        console.log(gold)
     }
+
     function displayStatusText(context) {
         // tao bong tao diem
         context.font = '40px Helvetica';
@@ -753,6 +765,11 @@ this.projectiles = [];
         context.fillText('Score:' + score,20,50);
         context.fillStyle = 'white';
         context.fillText('Score:' + score,22,52);
+        context.font = '40px Helvetica';
+        context.fillStyle = 'black';
+        context.fillText('Highest score:' + diemcao ,1100,50);
+        context.fillStyle = 'white';
+        context.fillText('Highest score:' + diemcao ,1100,50);
         if (gameOver){
             context.font = '90px Helvetica';
             context.textAlign = 'center';
@@ -768,6 +785,10 @@ this.projectiles = [];
         enemies = [];
         enemies2 = [];
         enemies3 =[];
+        if (score > diemcao) {
+            diemcao = score;
+            localStorage.setItem("diemcao", score);
+        }
         score = 0;
         gameOver = false;
         animate(0);
@@ -824,7 +845,6 @@ let  ramdomEnemyInterval= 1500
         }
     animate(0);
 });
-
 
 
 
